@@ -32,9 +32,6 @@ class my_monitor extends uvm_monitor;
                 item.last = mon_if.mon_cb.tlast;
                 item.user = mon_if.mon_cb.tuser;
                 
-                `uvm_info("MON",$sformatf("tdata: %h, tkeep: %h, tlast: %h, tuser: %h, FIFO_count: %d, Full: %b", 
-                item.data, item.keep, item.last, item.user, mon_if.mon_cb.axis_wr_data_count, mon_if.mon_cb.prog_full), UVM_LOW)
-
                 ap.write(item);
             
             end

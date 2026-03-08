@@ -44,8 +44,9 @@ module top_tb;
     assign out_if.tready = 1'b1;
 
     initial begin
-        uvm_config_db#(virtual axis_if)::set(null,"*","drv_if",in_if);
-        uvm_config_db#(virtual axis_if)::set(null,"*","mon_if",out_if);
+        uvm_config_db#(virtual axis_if)::set(null,"uvm_test_top.env.i_agent.driver","drv_if",in_if);
+        uvm_config_db#(virtual axis_if)::set(null,"uvm_test_top.env.i_agent.monitor","mon_if",in_if);
+        uvm_config_db#(virtual axis_if)::set(null,"uvm_test_top.env.o_agent.monitor","mon_if",out_if);
         run_test("my_test");
     end
 
