@@ -98,14 +98,21 @@ class my_test extends uvm_test;
     function void build_phase(uvm_phase phase);
         env = my_env::type_id::create("env", this);
     endfunction
-
+    
+    virtual function void end_of_elaboration_phase(uvm_phase phase);
+        super.end_of_elaboration_phase(phase);
+    
+        `uvm_info("UVM_TREE", "Printing UVM Topology...", UVM_LOW)
+        uvm_top.print_topology();
+  endfunction
+  
     task run_phase(uvm_phase phase);
         phase.raise_objection(this);
         `uvm_info("TEST", "Starting sequence in run_phase...", UVM_LOW)
         #10;
         phase.drop_objection(this);
     endtask
-
+    
     virtual function void report_phase(uvm_phase phase);
         `uvm_info("TEST", "Test finished!", UVM_LOW)
     endfunction

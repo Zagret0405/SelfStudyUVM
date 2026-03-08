@@ -23,6 +23,7 @@ class my_scoreboard extends uvm_scoreboard;
         fork
             forever begin
                 exp_port.get(exp_item);
+                phase.raise_objection(this);
                 exp_queue.push_back(exp_item);
             end
             
@@ -40,6 +41,7 @@ class my_scoreboard extends uvm_scoreboard;
                         $display("the actual item is");
                         act_item.print();
                     end
+                    phase.drop_objection(this);
                 end
                 else begin
                     `uvm_warning("MY_SCBD","Get DUT data,but without REF_MDL data!");

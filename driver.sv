@@ -21,7 +21,7 @@ class my_driver extends uvm_driver#(my_sequence_item);
         
         wait(drv_if.rst_n);
         `uvm_info("DRV", "Reset released, starting drive...", UVM_LOW)
-
+        @(drv_if.drv_cb);
         forever begin
             seq_item_port.get_next_item(req);
 
